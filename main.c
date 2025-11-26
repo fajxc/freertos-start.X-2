@@ -482,39 +482,63 @@ void vCountdownTask(void *pvParameters)
         }
         
         SafeDisp2String("\r\n[COUNTDOWN STARTED]\r\n");
-        SafeDisp2String("TEST1: Simple string works\r\n");
-        
-        /* Test: Can we print remaining as simple number? */
-        if (remaining == 0) {
-            SafeDisp2String("ERROR: remaining is ZERO!\r\n");
-        } else {
-            SafeDisp2String("TEST2: remaining is NOT zero\r\n");
-        }
         
         /* Initialize LEDs */
         LED1_Off();
         PWM_Start();
         PWM_SetOutputEnabled(true);
         PWM_SetDutyCycle(50);  /* 50% brightness for now */
-        SafeDisp2String("TEST3: After LED init\r\n");
         
-        /* Format and display time */
+        /* Display initial time */
         FormatTime(remaining, time_str);
         SafeDisp2String("\r\nTime: ");
         SafeDisp2String(time_str);
         SafeDisp2String("\r\n");
         
         /* Countdown loop */
-        SafeDisp2String("TEST8: Before loop, remaining=");
-        /* Try to print remaining value simply */
-        if (remaining > 0) {
-            SafeDisp2String(">0, entering loop\r\n");
-        } else {
-            SafeDisp2String("=0, NOT entering loop\r\n");
-        }
+        bool paused = false;
         
         while (remaining > 0) {
-            SafeDisp2String("LOOP: Inside countdown\r\n");
+            /* Check for PB3 button events */
+            ButtonEvent_t buttonEvent;
+            while (xQueueReceive(xButtonQueue, &buttonEvent, 0) == pdTRUE) {
+                if (buttonEvent.button == BUTTON_PB3) {
+                    if (buttonEvent.event == EVENT_CLICK) {
+                        /* Toggle pause/resume */
+                        paused = !paused;
+                        if (paused) {
+                            if (xSemaphoreTake(xStateMutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+                                g_SystemState = STATE_PAUSED;
+                                xSemaphoreGive(xStateMutex);
+                            }
+                            SafeDisp2String("\r\n[PAUSED]\r\n");
+                        } else {
+                            if (xSemaphoreTake(xStateMutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+                                g_SystemState = STATE_COUNTDOWN;
+                                xSemaphoreGive(xStateMutex);
+                            }
+                            SafeDisp2String("\r\n[RESUMED]\r\n");
+                        }
+                    } else if (buttonEvent.event == EVENT_LONG_PRESS) {
+                        /* Abort countdown - go to FINISHED */
+                        remaining = 0;
+                        SafeDisp2String("\r\n[ABORTED]\r\n");
+                        break;
+                    }
+                }
+            }
+            
+            /* If paused, just wait and check buttons again */
+            if (paused) {
+                vTaskDelay(pdMS_TO_TICKS(100));
+                continue;
+            }
+            
+            /* If aborted, exit loop */
+            if (remaining == 0) {
+                break;
+            }
+            
             /* Wait 1 second */
             vTaskDelay(pdMS_TO_TICKS(1000));
             
