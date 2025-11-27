@@ -490,11 +490,15 @@ void vCountdownTask(void *pvParameters)
         
         SafeDisp2String("\r\n[COUNTDOWN STARTED]\r\n");
         
+        /* Read ADC for initial brightness */
+        uint16_t initial_adc = do_ADC();
+        uint8_t initial_brightness = ADC_ToPercent(initial_adc);
+        
         /* Initialize LEDs */
         LED1_Off();
         PWM_Start();
         PWM_SetOutputEnabled(true);
-        PWM_SetDutyCycle(50);  /* 50% brightness for now */
+        PWM_SetDutyCycle(initial_brightness);
         
         /* Display initial time */
         FormatTime(remaining, time_str);
@@ -566,6 +570,11 @@ void vCountdownTask(void *pvParameters)
                             "\r\n[LED2 SOLID]\r\n" : "\r\n[LED2 BLINK]\r\n");
                     }
                 }
+                /* Read ADC and update brightness while paused */
+                uint16_t adc_paused = do_ADC();
+                uint8_t brightness_paused = ADC_ToPercent(adc_paused);
+                PWM_SetDutyCycle(brightness_paused);
+                
                 /* Control LED2 based on mode while paused */
                 if (g_DisplaySettings.led2_solid_mode) {
                     PWM_SetOutputEnabled(true);
@@ -588,13 +597,15 @@ void vCountdownTask(void *pvParameters)
             /* Decrement */
             remaining--;
             
+            /* Read ADC and update LED2 brightness */
+            uint16_t adc_value = do_ADC();
+            uint8_t brightness = ADC_ToPercent(adc_value);
+            PWM_SetDutyCycle(brightness);
+            
             /* Display updated time */
             FormatTime(remaining, time_str);
             if (g_DisplaySettings.show_extended_info) {
                 /* Extended display: Time + ADC + Brightness */
-                /* TODO: Read ADC when ADC is fixed */
-                uint16_t adc_value = 0;  /* Placeholder until ADC is fixed */
-                uint8_t brightness = 50;  /* Placeholder until ADC is fixed */
                 SafeDisp2String("Time: ");
                 SafeDisp2String(time_str);
                 SafeDisp2String(" | ADC:");
@@ -666,21 +677,19 @@ void vCountdownTask(void *pvParameters)
             LED0_On();
             LED1_Off();
             
-            /* Read ADC and update LED2 brightness (if ADC is working) */
-            /* TODO: Uncomment when ADC is fixed */
-            /* uint16_t adc_value = ADC_ReadPotentiometer(); */
-            /* uint8_t brightness = ADC_ToPercent(adc_value); */
-            /* PWM_SetDutyCycle(brightness); */
+            /* Read ADC and update LED2 brightness */
+            uint16_t adc_value = do_ADC();
+            uint8_t brightness = ADC_ToPercent(adc_value);
+            PWM_SetDutyCycle(brightness);
             
             vTaskDelay(blinkDelay);
             LED0_Off();
             LED1_On();
             
-            /* Read ADC again (if ADC is working) */
-            /* TODO: Uncomment when ADC is fixed */
-            /* adc_value = ADC_ReadPotentiometer(); */
-            /* brightness = ADC_ToPercent(adc_value); */
-            /* PWM_SetDutyCycle(brightness); */
+            /* Read ADC again */
+            adc_value = do_ADC();
+            brightness = ADC_ToPercent(adc_value);
+            PWM_SetDutyCycle(brightness);
             
             vTaskDelay(blinkDelay);
         }
@@ -742,6 +751,9 @@ void App_InitHardware(void)
     
     /* Initialize PWM (but don't start yet) */
     PWM_Init();
+    
+    /* Initialize ADC for potentiometer reading */
+    init_ADC();
 }
 
 /*============================================================================
