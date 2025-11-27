@@ -126,6 +126,7 @@ SemaphoreHandle_t xCountdownMutex = NULL;
 
 /* Global shared state */
 volatile SystemState_t g_SystemState = STATE_WAITING;
+volatile DisplaySettings_t g_DisplaySettings = {false, false};
 
 /* Countdown data */
 volatile uint16_t g_CountdownSeconds = 0;
@@ -179,6 +180,12 @@ void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void)
         cmd.character = received;
     } else if (received == 0x08 || received == 0x7F) {  /* Backspace or DEL */
         cmd.type = UART_CMD_BACKSPACE;
+        cmd.character = received;
+    } else if (received == 'i' || received == 'I') {
+        cmd.type = UART_CMD_TOGGLE_INFO;
+        cmd.character = received;
+    } else if (received == 'b' || received == 'B') {
+        cmd.type = UART_CMD_TOGGLE_BLINK;
         cmd.character = received;
     } else {
         cmd.type = UART_CMD_CHAR;
@@ -528,8 +535,44 @@ void vCountdownTask(void *pvParameters)
                 }
             }
             
+            /* Check for UART commands ('i' and 'b' keys) */
+            UartCmd_t uartCmd;
+            while (xQueueReceive(xUartRxQueue, &uartCmd, 0) == pdTRUE) {
+                if (uartCmd.type == UART_CMD_TOGGLE_INFO) {
+                    /* Toggle extended info display */
+                    g_DisplaySettings.show_extended_info = !g_DisplaySettings.show_extended_info;
+                    SafeDisp2String(g_DisplaySettings.show_extended_info ? 
+                        "\r\n[INFO MODE ON]\r\n" : "\r\n[INFO MODE OFF]\r\n");
+                } else if (uartCmd.type == UART_CMD_TOGGLE_BLINK) {
+                    /* Toggle LED2 solid/blink mode */
+                    g_DisplaySettings.led2_solid_mode = !g_DisplaySettings.led2_solid_mode;
+                    SafeDisp2String(g_DisplaySettings.led2_solid_mode ?
+                        "\r\n[LED2 SOLID]\r\n" : "\r\n[LED2 BLINK]\r\n");
+                }
+            }
+            
             /* If paused, just wait and check buttons again */
             if (paused) {
+                /* Check for UART commands even while paused */
+                UartCmd_t uartCmdPaused;
+                while (xQueueReceive(xUartRxQueue, &uartCmdPaused, 0) == pdTRUE) {
+                    if (uartCmdPaused.type == UART_CMD_TOGGLE_INFO) {
+                        g_DisplaySettings.show_extended_info = !g_DisplaySettings.show_extended_info;
+                        SafeDisp2String(g_DisplaySettings.show_extended_info ? 
+                            "\r\n[INFO MODE ON]\r\n" : "\r\n[INFO MODE OFF]\r\n");
+                    } else if (uartCmdPaused.type == UART_CMD_TOGGLE_BLINK) {
+                        g_DisplaySettings.led2_solid_mode = !g_DisplaySettings.led2_solid_mode;
+                        SafeDisp2String(g_DisplaySettings.led2_solid_mode ?
+                            "\r\n[LED2 SOLID]\r\n" : "\r\n[LED2 BLINK]\r\n");
+                    }
+                }
+                /* Control LED2 based on mode while paused */
+                if (g_DisplaySettings.led2_solid_mode) {
+                    PWM_SetOutputEnabled(true);
+                } else {
+                    /* Keep current LED1 state for blinking */
+                    PWM_SetOutputEnabled(led1_on);
+                }
                 vTaskDelay(pdMS_TO_TICKS(100));
                 continue;
             }
@@ -547,9 +590,38 @@ void vCountdownTask(void *pvParameters)
             
             /* Display updated time */
             FormatTime(remaining, time_str);
-            SafeDisp2String("Time: ");
-            SafeDisp2String(time_str);
-            SafeDisp2String("\r\n");
+            if (g_DisplaySettings.show_extended_info) {
+                /* Extended display: Time + ADC + Brightness */
+                /* TODO: Read ADC when ADC is fixed */
+                uint16_t adc_value = 0;  /* Placeholder until ADC is fixed */
+                uint8_t brightness = 50;  /* Placeholder until ADC is fixed */
+                SafeDisp2String("Time: ");
+                SafeDisp2String(time_str);
+                SafeDisp2String(" | ADC:");
+                /* Format ADC value (0-1023) */
+                char adc_str[6];
+                uint16_t temp_adc = adc_value;
+                adc_str[0] = '0' + (temp_adc / 1000);
+                adc_str[1] = '0' + ((temp_adc / 100) % 10);
+                adc_str[2] = '0' + ((temp_adc / 10) % 10);
+                adc_str[3] = '0' + (temp_adc % 10);
+                adc_str[4] = '\0';
+                SafeDisp2String(adc_str);
+                SafeDisp2String(" | Duty:");
+                /* Format brightness (0-100) */
+                char bright_str[4];
+                bright_str[0] = '0' + (brightness / 100);
+                bright_str[1] = '0' + ((brightness / 10) % 10);
+                bright_str[2] = '0' + (brightness % 10);
+                bright_str[3] = '\0';
+                SafeDisp2String(bright_str);
+                SafeDisp2String("%\r\n");
+            } else {
+                /* Simple display: Time only */
+                SafeDisp2String("Time: ");
+                SafeDisp2String(time_str);
+                SafeDisp2String("\r\n");
+            }
             
             /* Toggle LED1 every second */
             led1_on = !led1_on;
@@ -559,8 +631,14 @@ void vCountdownTask(void *pvParameters)
                 LED1_Off();
             }
             
-            /* Toggle LED2 PWM (sync with LED1) */
-            PWM_SetOutputEnabled(led1_on);
+            /* Control LED2 based on mode */
+            if (g_DisplaySettings.led2_solid_mode) {
+                /* LED2 solid on at current brightness */
+                PWM_SetOutputEnabled(true);
+            } else {
+                /* LED2 blinks in sync with LED1 */
+                PWM_SetOutputEnabled(led1_on);
+            }
         }
         
         /* Countdown complete */
