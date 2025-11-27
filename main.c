@@ -504,7 +504,7 @@ void vCountdownTask(void *pvParameters)
         FormatTime(remaining, time_str);
         SafeDisp2String("\r\nTime: ");
         SafeDisp2String(time_str);
-        SafeDisp2String("\r\n");
+        SafeDisp2String("   \r");  /* Spaces to clear, then return to start of line */
         
         /* Countdown loop */
         bool paused = false;
@@ -602,11 +602,11 @@ void vCountdownTask(void *pvParameters)
             uint8_t brightness = ADC_ToPercent(adc_value);
             PWM_SetDutyCycle(brightness);
             
-            /* Display updated time */
+            /* Display updated time (overwrite same line) */
             FormatTime(remaining, time_str);
             if (g_DisplaySettings.show_extended_info) {
                 /* Extended display: Time + ADC + Brightness */
-                SafeDisp2String("Time: ");
+                SafeDisp2String("\rTime: ");
                 SafeDisp2String(time_str);
                 SafeDisp2String(" | ADC:");
                 /* Format ADC value (0-1023) */
@@ -626,12 +626,12 @@ void vCountdownTask(void *pvParameters)
                 bright_str[2] = '0' + (brightness % 10);
                 bright_str[3] = '\0';
                 SafeDisp2String(bright_str);
-                SafeDisp2String("%\r\n");
+                SafeDisp2String("%   ");  /* Spaces to clear any leftover chars */
             } else {
                 /* Simple display: Time only */
-                SafeDisp2String("Time: ");
+                SafeDisp2String("\rTime: ");
                 SafeDisp2String(time_str);
-                SafeDisp2String("\r\n");
+                SafeDisp2String("                    ");  /* Spaces to clear extended info if it was shown */
             }
             
             /* Toggle LED1 every second */
@@ -662,6 +662,7 @@ void vCountdownTask(void *pvParameters)
             xSemaphoreGive(xStateMutex);
         }
         
+        /* Newline to move to next line after overwriting countdown */
         SafeDisp2String("\r\n\nThe countdown is done.\r\n\n");
         
         /* LED2 solid on */
