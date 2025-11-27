@@ -651,22 +651,37 @@ void vCountdownTask(void *pvParameters)
             xSemaphoreGive(xStateMutex);
         }
         
-        SafeDisp2String("\r\n\nCOUNTDOWN COMPLETE!\r\n\n");
+        SafeDisp2String("\r\n\nThe countdown is done.\r\n\n");
         
         /* LED2 solid on */
         PWM_SetOutputEnabled(true);
-        PWM_SetDutyCycle(50);  /* Use current brightness (will be from ADC later) */
+        PWM_SetDutyCycle(50);  /* Initial brightness (will be updated from ADC) */
         
         /* LED0 and LED1 alternate rapidly for 5 seconds */
+        /* During this time, potentiometer can still control LED2 brightness */
         const TickType_t blinkDelay = pdMS_TO_TICKS(100);  /* 100ms per half cycle */
         const uint8_t blinkCycles = 25;  /* 25 cycles * 200ms = 5 seconds */
         
         for (uint8_t i = 0; i < blinkCycles; i++) {
             LED0_On();
             LED1_Off();
+            
+            /* Read ADC and update LED2 brightness (if ADC is working) */
+            /* TODO: Uncomment when ADC is fixed */
+            /* uint16_t adc_value = ADC_ReadPotentiometer(); */
+            /* uint8_t brightness = ADC_ToPercent(adc_value); */
+            /* PWM_SetDutyCycle(brightness); */
+            
             vTaskDelay(blinkDelay);
             LED0_Off();
             LED1_On();
+            
+            /* Read ADC again (if ADC is working) */
+            /* TODO: Uncomment when ADC is fixed */
+            /* adc_value = ADC_ReadPotentiometer(); */
+            /* brightness = ADC_ToPercent(adc_value); */
+            /* PWM_SetDutyCycle(brightness); */
+            
             vTaskDelay(blinkDelay);
         }
         
