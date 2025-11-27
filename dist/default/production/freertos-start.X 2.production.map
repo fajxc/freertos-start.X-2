@@ -120,11 +120,11 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x45e           0x68d  (1677)
 .const                       0x55e               0x29e           0x3ed  (1005)
-.text                        0x7fc              0x458e          0x6855  (26709)
-.dinit                      0x4d8a                0x5a            0x87  (135)
-.text                       0x4de4                0x54            0x7e  (126)
+.text                        0x7fc              0x45e0          0x68d0  (26832)
+.dinit                      0x4ddc                0x5a            0x87  (135)
+.text                       0x4e36                0x54            0x7e  (126)
 
-                 Total "program" memory used (bytes):         0x73d4  (29652) 11%
+                 Total "program" memory used (bytes):         0x744f  (29775) 11%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -278,128 +278,128 @@ External Symbols in Program Memory (by address):
                   0x002df8                  _vWaitingTask
                   0x002e8c                  _vTimeInputTask
                   0x00317a                  _vCountdownTask
-                  0x0034c2                  _vButtonTask
-                  0x0034de                  _App_InitHardware
-                  0x003504                  _App_InitRTOSObjects
-                  0x003544                  _main
-                  0x003586                  _xStreamBufferGenericCreate
-                  0x0035f4                  _vStreamBufferDelete
-                  0x00361a                  _xStreamBufferReset
-                  0x00366c                  _xStreamBufferResetFromISR
-                  0x0036be                  _xStreamBufferSetTriggerLevel
-                  0x0036f2                  _xStreamBufferSpacesAvailable
-                  0x003730                  _xStreamBufferBytesAvailable
-                  0x003744                  _xStreamBufferSend
-                  0x00383a                  _xStreamBufferSendFromISR
-                  0x003916                  _xStreamBufferReceive
-                  0x0039e8                  _xStreamBufferNextMessageLengthBytes
-                  0x003a30                  _xStreamBufferReceiveFromISR
-                  0x003b14                  _xStreamBufferIsEmpty
-                  0x003b3c                  _xStreamBufferIsFull
-                  0x003b76                  _xStreamBufferSendCompletedFromISR
-                  0x003bb4                  _xStreamBufferReceiveCompletedFromISR
-                  0x003d16                  _uxStreamBufferGetStreamBufferNotificationIndex
-                  0x003d26                  _vStreamBufferSetStreamBufferNotificationIndex
-                  0x003dfa                  _Buttons_Init
-                  0x003ed0                  _Buttons_Update
-                  0x003fca                  _Buttons_IsPB1Clicked
-                  0x003fe4                  _Buttons_IsPB2Clicked
-                  0x003ffe                  _Buttons_IsPB3Clicked
-                  0x004018                  _Buttons_ArePB2AndPB3Pressed
-                  0x004036                  _Buttons_IsPB3LongPress
-                  0x004040                  _Buttons_IsPB2AndPB3LongPress
-                  0x004070                  _Buttons_IsPB2AndPB3Click
-                  0x004084                  _Buttons_IsPB1Pressed
-                  0x00408e                  _Buttons_IsPB2Pressed
-                  0x004098                  _Buttons_IsPB3Pressed
-                  0x0040a2                  _Buttons_ClearEvents
-                  0x0040d2                  _Buttons_SendPendingEvents
-                  0x0041f2                  _xEventGroupCreate
-                  0x004210                  _xEventGroupSync
-                  0x0042cc                  _xEventGroupWaitBits
-                  0x0043ac                  _xEventGroupClearBits
-                  0x0043d4                  _xEventGroupGetBitsFromISR
-                  0x0043ec                  _xEventGroupSetBits
-                  0x0044ba                  _vEventGroupDelete
-                  0x0044e4                  _vEventGroupSetBitsCallback
-                  0x0044f6                  _vEventGroupClearBitsCallback
-                  0x004540                  _xCoRoutineCreate
-                  0x0045d6                  _vCoRoutineAddToDelayedList
-                  0x004720                  _vCoRoutineSchedule
-                  0x0047c2                  _xCoRoutineRemoveFromEventList
-                  0x0047fa                  _vCoRoutineResetState
-                  0x00480e                  _InitUART2
-                  0x004862                  _Disp2String
-                  0x004884                  _XmitUART2
-                  0x0048bc                  _RecvUart
-                  0x004914                  _RecvUartChar
-                  0x00495e                  _pxPortInitialiseStack
-                  0x0049f8                  _xPortStartScheduler
-                  0x004a28                  _vPortEndScheduler
-                  0x004a56                  _vPortEnterCritical
-                  0x004a70                  _vPortExitCritical
-                  0x004a8c                  _vListInitialise
-                  0x004abe                  _vListInitialiseItem
-                  0x004acc                  _vListInsertEnd
-                  0x004b08                  _vListInsert
-                  0x004b6c                  _uxListRemove
-                  0x004bb4                  _PWM_Init
-                  0x004be0                  _PWM_Start
-                  0x004bf0                  _PWM_Stop
-                  0x004bfc                  _PWM_SetDutyCycle
-                  0x004c16                  _PWM_GetDutyCycle
-                  0x004c1e                  _PWM_SetOutputEnabled
-                  0x004c36                  _PWM_IsOutputEnabled
-                  0x004c3e                  _PWM_UpdatePulse
-                  0x004c74                  _PWM_ResetPulse
-                  0x004c82                  _pvPortMalloc
-                  0x004cf4                  _vPortFree
-                  0x004cfc                  _vPortInitialiseBlocks
-                  0x004d04                  _xPortGetFreeHeapSize
-                  0x004d10                  _vPortHeapResetState
-                  0x004d18                  _ADC_Init
-                  0x004d34                  _ADC_ReadPotentiometer
-                  0x004d4e                  _ADC_ToPercent
-                  0x004d7c                  _ADC_ReadBrightnessPercent
-                  0x004de4                  _vPortYield
+                  0x003514                  _vButtonTask
+                  0x003530                  _App_InitHardware
+                  0x003556                  _App_InitRTOSObjects
+                  0x003596                  _main
+                  0x0035d8                  _xStreamBufferGenericCreate
+                  0x003646                  _vStreamBufferDelete
+                  0x00366c                  _xStreamBufferReset
+                  0x0036be                  _xStreamBufferResetFromISR
+                  0x003710                  _xStreamBufferSetTriggerLevel
+                  0x003744                  _xStreamBufferSpacesAvailable
+                  0x003782                  _xStreamBufferBytesAvailable
+                  0x003796                  _xStreamBufferSend
+                  0x00388c                  _xStreamBufferSendFromISR
+                  0x003968                  _xStreamBufferReceive
+                  0x003a3a                  _xStreamBufferNextMessageLengthBytes
+                  0x003a82                  _xStreamBufferReceiveFromISR
+                  0x003b66                  _xStreamBufferIsEmpty
+                  0x003b8e                  _xStreamBufferIsFull
+                  0x003bc8                  _xStreamBufferSendCompletedFromISR
+                  0x003c06                  _xStreamBufferReceiveCompletedFromISR
+                  0x003d68                  _uxStreamBufferGetStreamBufferNotificationIndex
+                  0x003d78                  _vStreamBufferSetStreamBufferNotificationIndex
+                  0x003e4c                  _Buttons_Init
+                  0x003f22                  _Buttons_Update
+                  0x00401c                  _Buttons_IsPB1Clicked
+                  0x004036                  _Buttons_IsPB2Clicked
+                  0x004050                  _Buttons_IsPB3Clicked
+                  0x00406a                  _Buttons_ArePB2AndPB3Pressed
+                  0x004088                  _Buttons_IsPB3LongPress
+                  0x004092                  _Buttons_IsPB2AndPB3LongPress
+                  0x0040c2                  _Buttons_IsPB2AndPB3Click
+                  0x0040d6                  _Buttons_IsPB1Pressed
+                  0x0040e0                  _Buttons_IsPB2Pressed
+                  0x0040ea                  _Buttons_IsPB3Pressed
+                  0x0040f4                  _Buttons_ClearEvents
+                  0x004124                  _Buttons_SendPendingEvents
+                  0x004244                  _xEventGroupCreate
+                  0x004262                  _xEventGroupSync
+                  0x00431e                  _xEventGroupWaitBits
+                  0x0043fe                  _xEventGroupClearBits
+                  0x004426                  _xEventGroupGetBitsFromISR
+                  0x00443e                  _xEventGroupSetBits
+                  0x00450c                  _vEventGroupDelete
+                  0x004536                  _vEventGroupSetBitsCallback
+                  0x004548                  _vEventGroupClearBitsCallback
+                  0x004592                  _xCoRoutineCreate
+                  0x004628                  _vCoRoutineAddToDelayedList
+                  0x004772                  _vCoRoutineSchedule
+                  0x004814                  _xCoRoutineRemoveFromEventList
+                  0x00484c                  _vCoRoutineResetState
+                  0x004860                  _InitUART2
+                  0x0048b4                  _Disp2String
+                  0x0048d6                  _XmitUART2
+                  0x00490e                  _RecvUart
+                  0x004966                  _RecvUartChar
+                  0x0049b0                  _pxPortInitialiseStack
+                  0x004a4a                  _xPortStartScheduler
+                  0x004a7a                  _vPortEndScheduler
+                  0x004aa8                  _vPortEnterCritical
+                  0x004ac2                  _vPortExitCritical
+                  0x004ade                  _vListInitialise
+                  0x004b10                  _vListInitialiseItem
+                  0x004b1e                  _vListInsertEnd
+                  0x004b5a                  _vListInsert
+                  0x004bbe                  _uxListRemove
+                  0x004c06                  _PWM_Init
+                  0x004c32                  _PWM_Start
+                  0x004c42                  _PWM_Stop
+                  0x004c4e                  _PWM_SetDutyCycle
+                  0x004c68                  _PWM_GetDutyCycle
+                  0x004c70                  _PWM_SetOutputEnabled
+                  0x004c88                  _PWM_IsOutputEnabled
+                  0x004c90                  _PWM_UpdatePulse
+                  0x004cc6                  _PWM_ResetPulse
+                  0x004cd4                  _pvPortMalloc
+                  0x004d46                  _vPortFree
+                  0x004d4e                  _vPortInitialiseBlocks
+                  0x004d56                  _xPortGetFreeHeapSize
+                  0x004d62                  _vPortHeapResetState
+                  0x004d6a                  _ADC_Init
+                  0x004d86                  _ADC_ReadPotentiometer
+                  0x004da0                  _ADC_ToPercent
+                  0x004dce                  _ADC_ReadBrightnessPercent
+                  0x004e36                  _vPortYield
                   0x02af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x004d18                  _ADC_Init
-                  0x004d7c                  _ADC_ReadBrightnessPercent
-                  0x004d34                  _ADC_ReadPotentiometer
-                  0x004d4e                  _ADC_ToPercent
-                  0x0034de                  _App_InitHardware
-                  0x003504                  _App_InitRTOSObjects
-                  0x004018                  _Buttons_ArePB2AndPB3Pressed
-                  0x0040a2                  _Buttons_ClearEvents
-                  0x003dfa                  _Buttons_Init
-                  0x003fca                  _Buttons_IsPB1Clicked
-                  0x004084                  _Buttons_IsPB1Pressed
-                  0x004070                  _Buttons_IsPB2AndPB3Click
-                  0x004040                  _Buttons_IsPB2AndPB3LongPress
-                  0x003fe4                  _Buttons_IsPB2Clicked
-                  0x00408e                  _Buttons_IsPB2Pressed
-                  0x003ffe                  _Buttons_IsPB3Clicked
-                  0x004036                  _Buttons_IsPB3LongPress
-                  0x004098                  _Buttons_IsPB3Pressed
-                  0x0040d2                  _Buttons_SendPendingEvents
-                  0x003ed0                  _Buttons_Update
-                  0x004862                  _Disp2String
-                  0x00480e                  _InitUART2
-                  0x004c16                  _PWM_GetDutyCycle
-                  0x004bb4                  _PWM_Init
-                  0x004c36                  _PWM_IsOutputEnabled
-                  0x004c74                  _PWM_ResetPulse
-                  0x004bfc                  _PWM_SetDutyCycle
-                  0x004c1e                  _PWM_SetOutputEnabled
-                  0x004be0                  _PWM_Start
-                  0x004bf0                  _PWM_Stop
-                  0x004c3e                  _PWM_UpdatePulse
-                  0x0048bc                  _RecvUart
-                  0x004914                  _RecvUartChar
-                  0x004884                  _XmitUART2
+                  0x004d6a                  _ADC_Init
+                  0x004dce                  _ADC_ReadBrightnessPercent
+                  0x004d86                  _ADC_ReadPotentiometer
+                  0x004da0                  _ADC_ToPercent
+                  0x003530                  _App_InitHardware
+                  0x003556                  _App_InitRTOSObjects
+                  0x00406a                  _Buttons_ArePB2AndPB3Pressed
+                  0x0040f4                  _Buttons_ClearEvents
+                  0x003e4c                  _Buttons_Init
+                  0x00401c                  _Buttons_IsPB1Clicked
+                  0x0040d6                  _Buttons_IsPB1Pressed
+                  0x0040c2                  _Buttons_IsPB2AndPB3Click
+                  0x004092                  _Buttons_IsPB2AndPB3LongPress
+                  0x004036                  _Buttons_IsPB2Clicked
+                  0x0040e0                  _Buttons_IsPB2Pressed
+                  0x004050                  _Buttons_IsPB3Clicked
+                  0x004088                  _Buttons_IsPB3LongPress
+                  0x0040ea                  _Buttons_IsPB3Pressed
+                  0x004124                  _Buttons_SendPendingEvents
+                  0x003f22                  _Buttons_Update
+                  0x0048b4                  _Disp2String
+                  0x004860                  _InitUART2
+                  0x004c68                  _PWM_GetDutyCycle
+                  0x004c06                  _PWM_Init
+                  0x004c88                  _PWM_IsOutputEnabled
+                  0x004cc6                  _PWM_ResetPulse
+                  0x004c4e                  _PWM_SetDutyCycle
+                  0x004c70                  _PWM_SetOutputEnabled
+                  0x004c32                  _PWM_Start
+                  0x004c42                  _PWM_Stop
+                  0x004c90                  _PWM_UpdatePulse
+                  0x00490e                  _RecvUart
+                  0x004966                  _RecvUartChar
+                  0x0048d6                  _XmitUART2
                   0x000340                  __DefaultInterrupt
                   0x02af00                  __FSEC.sec
                   0x000218                  __T1Interrupt
@@ -416,51 +416,51 @@ External Symbols in Program Memory (by name):
                   0x00013c                  __psv_init
                   0x000100                  __resetPRI
                   0x00037a                  _atoi
-                  0x003544                  _main
+                  0x003596                  _main
                   0x0003c6                  _memcmp
                   0x0003e2                  _memcpy
                   0x0003f0                  _memset
                   0x0010be                  _pcTaskGetName
-                  0x004c82                  _pvPortMalloc
+                  0x004cd4                  _pvPortMalloc
                   0x0019c4                  _pvTaskIncrementMutexHeldCount
-                  0x00495e                  _pxPortInitialiseStack
+                  0x0049b0                  _pxPortInitialiseStack
                   0x0004b8                  _strchr
                   0x000522                  _strlen
                   0x0019e0                  _ulTaskGenericNotifyTake
                   0x0020c8                  _ulTaskGenericNotifyValueClear
-                  0x004b6c                  _uxListRemove
+                  0x004bbe                  _uxListRemove
                   0x00293c                  _uxQueueGetQueueItemSize
                   0x002948                  _uxQueueGetQueueLength
                   0x0028e6                  _uxQueueMessagesWaiting
                   0x002918                  _uxQueueMessagesWaitingFromISR
                   0x0028fa                  _uxQueueSpacesAvailable
-                  0x003d16                  _uxStreamBufferGetStreamBufferNotificationIndex
+                  0x003d68                  _uxStreamBufferGetStreamBufferNotificationIndex
                   0x0010b6                  _uxTaskGetNumberOfTasks
                   0x0019ac                  _uxTaskResetEventItemValue
                   0x002dba                  _vApplicationIdleHook
                   0x002dc2                  _vApplicationStackOverflowHook
-                  0x0034c2                  _vButtonTask
-                  0x0045d6                  _vCoRoutineAddToDelayedList
-                  0x0047fa                  _vCoRoutineResetState
-                  0x004720                  _vCoRoutineSchedule
+                  0x003514                  _vButtonTask
+                  0x004628                  _vCoRoutineAddToDelayedList
+                  0x00484c                  _vCoRoutineResetState
+                  0x004772                  _vCoRoutineSchedule
                   0x00317a                  _vCountdownTask
-                  0x0044f6                  _vEventGroupClearBitsCallback
-                  0x0044ba                  _vEventGroupDelete
-                  0x0044e4                  _vEventGroupSetBitsCallback
-                  0x004a8c                  _vListInitialise
-                  0x004abe                  _vListInitialiseItem
-                  0x004b08                  _vListInsert
-                  0x004acc                  _vListInsertEnd
-                  0x004a28                  _vPortEndScheduler
-                  0x004a56                  _vPortEnterCritical
-                  0x004a70                  _vPortExitCritical
-                  0x004cf4                  _vPortFree
-                  0x004d10                  _vPortHeapResetState
-                  0x004cfc                  _vPortInitialiseBlocks
-                  0x004de4                  _vPortYield
+                  0x004548                  _vEventGroupClearBitsCallback
+                  0x00450c                  _vEventGroupDelete
+                  0x004536                  _vEventGroupSetBitsCallback
+                  0x004ade                  _vListInitialise
+                  0x004b10                  _vListInitialiseItem
+                  0x004b5a                  _vListInsert
+                  0x004b1e                  _vListInsertEnd
+                  0x004a7a                  _vPortEndScheduler
+                  0x004aa8                  _vPortEnterCritical
+                  0x004ac2                  _vPortExitCritical
+                  0x004d46                  _vPortFree
+                  0x004d62                  _vPortHeapResetState
+                  0x004d4e                  _vPortInitialiseBlocks
+                  0x004e36                  _vPortYield
                   0x00292c                  _vQueueDelete
-                  0x0035f4                  _vStreamBufferDelete
-                  0x003d26                  _vStreamBufferSetStreamBufferNotificationIndex
+                  0x003646                  _vStreamBufferDelete
+                  0x003d78                  _vStreamBufferSetStreamBufferNotificationIndex
                   0x000aa0                  _vTaskDelay
                   0x000ef6                  _vTaskEndScheduler
                   0x001f42                  _vTaskGenericNotifyGiveFromISR
@@ -480,16 +480,16 @@ External Symbols in Program Memory (by name):
                   0x00128c                  _vTaskSwitchContext
                   0x002e8c                  _vTimeInputTask
                   0x002df8                  _vWaitingTask
-                  0x004540                  _xCoRoutineCreate
-                  0x0047c2                  _xCoRoutineRemoveFromEventList
-                  0x0043ac                  _xEventGroupClearBits
-                  0x0041f2                  _xEventGroupCreate
-                  0x0043d4                  _xEventGroupGetBitsFromISR
-                  0x0043ec                  _xEventGroupSetBits
-                  0x004210                  _xEventGroupSync
-                  0x0042cc                  _xEventGroupWaitBits
-                  0x004d04                  _xPortGetFreeHeapSize
-                  0x0049f8                  _xPortStartScheduler
+                  0x004592                  _xCoRoutineCreate
+                  0x004814                  _xCoRoutineRemoveFromEventList
+                  0x0043fe                  _xEventGroupClearBits
+                  0x004244                  _xEventGroupCreate
+                  0x004426                  _xEventGroupGetBitsFromISR
+                  0x00443e                  _xEventGroupSetBits
+                  0x004262                  _xEventGroupSync
+                  0x00431e                  _xEventGroupWaitBits
+                  0x004d56                  _xPortGetFreeHeapSize
+                  0x004a4a                  _xPortStartScheduler
                   0x002c1e                  _xQueueCRReceive
                   0x002d3a                  _xQueueCRReceiveFromISR
                   0x002b74                  _xQueueCRSend
@@ -507,21 +507,21 @@ External Symbols in Program Memory (by name):
                   0x00256e                  _xQueueReceive
                   0x002830                  _xQueueReceiveFromISR
                   0x002646                  _xQueueSemaphoreTake
-                  0x003730                  _xStreamBufferBytesAvailable
-                  0x003586                  _xStreamBufferGenericCreate
-                  0x003b14                  _xStreamBufferIsEmpty
-                  0x003b3c                  _xStreamBufferIsFull
-                  0x0039e8                  _xStreamBufferNextMessageLengthBytes
-                  0x003916                  _xStreamBufferReceive
-                  0x003bb4                  _xStreamBufferReceiveCompletedFromISR
-                  0x003a30                  _xStreamBufferReceiveFromISR
-                  0x00361a                  _xStreamBufferReset
-                  0x00366c                  _xStreamBufferResetFromISR
-                  0x003744                  _xStreamBufferSend
-                  0x003b76                  _xStreamBufferSendCompletedFromISR
-                  0x00383a                  _xStreamBufferSendFromISR
-                  0x0036be                  _xStreamBufferSetTriggerLevel
-                  0x0036f2                  _xStreamBufferSpacesAvailable
+                  0x003782                  _xStreamBufferBytesAvailable
+                  0x0035d8                  _xStreamBufferGenericCreate
+                  0x003b66                  _xStreamBufferIsEmpty
+                  0x003b8e                  _xStreamBufferIsFull
+                  0x003a3a                  _xStreamBufferNextMessageLengthBytes
+                  0x003968                  _xStreamBufferReceive
+                  0x003c06                  _xStreamBufferReceiveCompletedFromISR
+                  0x003a82                  _xStreamBufferReceiveFromISR
+                  0x00366c                  _xStreamBufferReset
+                  0x0036be                  _xStreamBufferResetFromISR
+                  0x003796                  _xStreamBufferSend
+                  0x003bc8                  _xStreamBufferSendCompletedFromISR
+                  0x00388c                  _xStreamBufferSendFromISR
+                  0x003710                  _xStreamBufferSetTriggerLevel
+                  0x003744                  _xStreamBufferSpacesAvailable
                   0x0010d8                  _xTaskCatchUpTicks
                   0x001610                  _xTaskCheckForTimeOut
                   0x000858                  _xTaskCreate
@@ -691,7 +691,7 @@ __FDEVOPT1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0xc4d1
+.debug_info       0x000000       0xc520
  *(.debug_info)
  .debug_info      0x000000        0xc94 build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/port.o
  .debug_info      0x000c94         0xb3 build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/portasm_PIC24.o
@@ -703,13 +703,13 @@ __FDEVOPT1
  .debug_info      0x003cb7       0x114c build/default/production/FreeRTOS/stream_buffer.o
  .debug_info      0x004e03       0x237c build/default/production/FreeRTOS/tasks.o
  .debug_info      0x00717f        0x15b build/default/production/FreeRTOS/timers.o
- .debug_info      0x0072da       0x1c75 build/default/production/main.o
- .debug_info      0x008f4f        0xb90 build/default/production/uart.o
- .debug_info      0x009adf        0xdf3 build/default/production/FreeRTOS/pwm.o
- .debug_info      0x00a8d2       0x129b build/default/production/FreeRTOS/buttons.o
- .debug_info      0x00bb6d        0x84b build/default/production/FreeRTOS/adc.o
- .debug_info      0x00c3b8         0x8d /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(udivsi3.DA_o)
- .debug_info      0x00c445         0x8c /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(mulsi3.DA_o)
+ .debug_info      0x0072da       0x1cc4 build/default/production/main.o
+ .debug_info      0x008f9e        0xb90 build/default/production/uart.o
+ .debug_info      0x009b2e        0xdf3 build/default/production/FreeRTOS/pwm.o
+ .debug_info      0x00a921       0x129b build/default/production/FreeRTOS/buttons.o
+ .debug_info      0x00bbbc        0x84b build/default/production/FreeRTOS/adc.o
+ .debug_info      0x00c407         0x8d /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(udivsi3.DA_o)
+ .debug_info      0x00c494         0x8c /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(mulsi3.DA_o)
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000       0x1507
@@ -732,7 +732,7 @@ __FDEVOPT1
  .debug_abbrev    0x0014df         0x14 /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(udivsi3.DA_o)
  .debug_abbrev    0x0014f3         0x14 /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(mulsi3.DA_o)
 
-.debug_line       0x000000       0x1d93
+.debug_line       0x000000       0x1da9
  *(.debug_line)
  .debug_line      0x000000        0x1c7 build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/port.o
  .debug_line      0x0001c7         0x88 build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/portasm_PIC24.o
@@ -744,13 +744,13 @@ __FDEVOPT1
  .debug_line      0x000bc0        0x26d build/default/production/FreeRTOS/stream_buffer.o
  .debug_line      0x000e2d        0x5b0 build/default/production/FreeRTOS/tasks.o
  .debug_line      0x0013dd         0x1a build/default/production/FreeRTOS/timers.o
- .debug_line      0x0013f7        0x314 build/default/production/main.o
- .debug_line      0x00170b        0x14d build/default/production/uart.o
- .debug_line      0x001858        0x157 build/default/production/FreeRTOS/pwm.o
- .debug_line      0x0019af        0x23d build/default/production/FreeRTOS/buttons.o
- .debug_line      0x001bec        0x128 build/default/production/FreeRTOS/adc.o
- .debug_line      0x001d14         0x45 /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(udivsi3.DA_o)
- .debug_line      0x001d59         0x3a /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(mulsi3.DA_o)
+ .debug_line      0x0013f7        0x32a build/default/production/main.o
+ .debug_line      0x001721        0x14d build/default/production/uart.o
+ .debug_line      0x00186e        0x157 build/default/production/FreeRTOS/pwm.o
+ .debug_line      0x0019c5        0x23d build/default/production/FreeRTOS/buttons.o
+ .debug_line      0x001c02        0x128 build/default/production/FreeRTOS/adc.o
+ .debug_line      0x001d2a         0x45 /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(udivsi3.DA_o)
+ .debug_line      0x001d6f         0x3a /Applications/microchip/xc16/v2.10/bin/bin/../../lib/libc99-pic30-elf.a(mulsi3.DA_o)
 
 .debug_frame      0x000000       0x14a2
  *(.debug_frame)
@@ -2374,7 +2374,7 @@ __c30_signature
  .const             0x87e0         0x10 build/default/production/FreeRTOS/pwm.o
  .const             0x87f0          0xc build/default/production/uart.o
 
-.text             0x0007fc       0x458e
+.text             0x0007fc       0x45e0
  .text            0x0007fc       0x19f8 build/default/production/FreeRTOS/tasks.o
                   0x000858                  _xTaskCreate
                   0x000a22                  _xTaskDelayUntil
@@ -2442,110 +2442,110 @@ __c30_signature
                   0x002c1e                  _xQueueCRReceive
                   0x002cf8                  _xQueueCRSendFromISR
                   0x002d3a                  _xQueueCRReceiveFromISR
- .text            0x002dba        0x7cc build/default/production/main.o
+ .text            0x002dba        0x81e build/default/production/main.o
                   0x002dba                  _vApplicationIdleHook
                   0x002dc2                  _vApplicationStackOverflowHook
                   0x002df8                  _vWaitingTask
                   0x002e8c                  _vTimeInputTask
                   0x00317a                  _vCountdownTask
-                  0x0034c2                  _vButtonTask
-                  0x0034de                  _App_InitHardware
-                  0x003504                  _App_InitRTOSObjects
-                  0x003544                  _main
- .text            0x003586        0x7b4 build/default/production/FreeRTOS/stream_buffer.o
-                  0x003586                  _xStreamBufferGenericCreate
-                  0x0035f4                  _vStreamBufferDelete
-                  0x00361a                  _xStreamBufferReset
-                  0x00366c                  _xStreamBufferResetFromISR
-                  0x0036be                  _xStreamBufferSetTriggerLevel
-                  0x0036f2                  _xStreamBufferSpacesAvailable
-                  0x003730                  _xStreamBufferBytesAvailable
-                  0x003744                  _xStreamBufferSend
-                  0x00383a                  _xStreamBufferSendFromISR
-                  0x003916                  _xStreamBufferReceive
-                  0x0039e8                  _xStreamBufferNextMessageLengthBytes
-                  0x003a30                  _xStreamBufferReceiveFromISR
-                  0x003b14                  _xStreamBufferIsEmpty
-                  0x003b3c                  _xStreamBufferIsFull
-                  0x003b76                  _xStreamBufferSendCompletedFromISR
-                  0x003bb4                  _xStreamBufferReceiveCompletedFromISR
-                  0x003d16                  _uxStreamBufferGetStreamBufferNotificationIndex
-                  0x003d26                  _vStreamBufferSetStreamBufferNotificationIndex
- .text            0x003d3a        0x4b8 build/default/production/FreeRTOS/buttons.o
-                  0x003dfa                  _Buttons_Init
-                  0x003ed0                  _Buttons_Update
-                  0x003fca                  _Buttons_IsPB1Clicked
-                  0x003fe4                  _Buttons_IsPB2Clicked
-                  0x003ffe                  _Buttons_IsPB3Clicked
-                  0x004018                  _Buttons_ArePB2AndPB3Pressed
-                  0x004036                  _Buttons_IsPB3LongPress
-                  0x004040                  _Buttons_IsPB2AndPB3LongPress
-                  0x004070                  _Buttons_IsPB2AndPB3Click
-                  0x004084                  _Buttons_IsPB1Pressed
-                  0x00408e                  _Buttons_IsPB2Pressed
-                  0x004098                  _Buttons_IsPB3Pressed
-                  0x0040a2                  _Buttons_ClearEvents
-                  0x0040d2                  _Buttons_SendPendingEvents
- .text            0x0041f2        0x34e build/default/production/FreeRTOS/event_groups.o
-                  0x0041f2                  _xEventGroupCreate
-                  0x004210                  _xEventGroupSync
-                  0x0042cc                  _xEventGroupWaitBits
-                  0x0043ac                  _xEventGroupClearBits
-                  0x0043d4                  _xEventGroupGetBitsFromISR
-                  0x0043ec                  _xEventGroupSetBits
-                  0x0044ba                  _vEventGroupDelete
-                  0x0044e4                  _vEventGroupSetBitsCallback
-                  0x0044f6                  _vEventGroupClearBitsCallback
- .text            0x004540        0x2ce build/default/production/FreeRTOS/croutine.o
-                  0x004540                  _xCoRoutineCreate
-                  0x0045d6                  _vCoRoutineAddToDelayedList
-                  0x004720                  _vCoRoutineSchedule
-                  0x0047c2                  _xCoRoutineRemoveFromEventList
-                  0x0047fa                  _vCoRoutineResetState
- .text            0x00480e        0x150 build/default/production/uart.o
-                  0x00480e                  _InitUART2
-                  0x004862                  _Disp2String
-                  0x004884                  _XmitUART2
-                  0x0048bc                  _RecvUart
-                  0x004914                  _RecvUartChar
- .text            0x00495e        0x12e build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/port.o
-                  0x00495e                  _pxPortInitialiseStack
-                  0x0049f8                  _xPortStartScheduler
-                  0x004a28                  _vPortEndScheduler
-                  0x004a2e                  _vApplicationSetupTickTimerInterrupt
-                  0x004a56                  _vPortEnterCritical
-                  0x004a70                  _vPortExitCritical
- .text            0x004a8c        0x128 build/default/production/FreeRTOS/list.o
-                  0x004a8c                  _vListInitialise
-                  0x004abe                  _vListInitialiseItem
-                  0x004acc                  _vListInsertEnd
-                  0x004b08                  _vListInsert
-                  0x004b6c                  _uxListRemove
- .text            0x004bb4         0xce build/default/production/FreeRTOS/pwm.o
-                  0x004bb4                  _PWM_Init
-                  0x004be0                  _PWM_Start
-                  0x004bf0                  _PWM_Stop
-                  0x004bfc                  _PWM_SetDutyCycle
-                  0x004c16                  _PWM_GetDutyCycle
-                  0x004c1e                  _PWM_SetOutputEnabled
-                  0x004c36                  _PWM_IsOutputEnabled
-                  0x004c3e                  _PWM_UpdatePulse
-                  0x004c74                  _PWM_ResetPulse
- .text            0x004c82         0x96 build/default/production/FreeRTOS/portable/MemMang/heap_1.o
-                  0x004c82                  _pvPortMalloc
-                  0x004cf4                  _vPortFree
-                  0x004cfc                  _vPortInitialiseBlocks
-                  0x004d04                  _xPortGetFreeHeapSize
-                  0x004d10                  _vPortHeapResetState
- .text            0x004d18         0x72 build/default/production/FreeRTOS/adc.o
-                  0x004d18                  _ADC_Init
-                  0x004d34                  _ADC_ReadPotentiometer
-                  0x004d4e                  _ADC_ToPercent
-                  0x004d7c                  _ADC_ReadBrightnessPercent
+                  0x003514                  _vButtonTask
+                  0x003530                  _App_InitHardware
+                  0x003556                  _App_InitRTOSObjects
+                  0x003596                  _main
+ .text            0x0035d8        0x7b4 build/default/production/FreeRTOS/stream_buffer.o
+                  0x0035d8                  _xStreamBufferGenericCreate
+                  0x003646                  _vStreamBufferDelete
+                  0x00366c                  _xStreamBufferReset
+                  0x0036be                  _xStreamBufferResetFromISR
+                  0x003710                  _xStreamBufferSetTriggerLevel
+                  0x003744                  _xStreamBufferSpacesAvailable
+                  0x003782                  _xStreamBufferBytesAvailable
+                  0x003796                  _xStreamBufferSend
+                  0x00388c                  _xStreamBufferSendFromISR
+                  0x003968                  _xStreamBufferReceive
+                  0x003a3a                  _xStreamBufferNextMessageLengthBytes
+                  0x003a82                  _xStreamBufferReceiveFromISR
+                  0x003b66                  _xStreamBufferIsEmpty
+                  0x003b8e                  _xStreamBufferIsFull
+                  0x003bc8                  _xStreamBufferSendCompletedFromISR
+                  0x003c06                  _xStreamBufferReceiveCompletedFromISR
+                  0x003d68                  _uxStreamBufferGetStreamBufferNotificationIndex
+                  0x003d78                  _vStreamBufferSetStreamBufferNotificationIndex
+ .text            0x003d8c        0x4b8 build/default/production/FreeRTOS/buttons.o
+                  0x003e4c                  _Buttons_Init
+                  0x003f22                  _Buttons_Update
+                  0x00401c                  _Buttons_IsPB1Clicked
+                  0x004036                  _Buttons_IsPB2Clicked
+                  0x004050                  _Buttons_IsPB3Clicked
+                  0x00406a                  _Buttons_ArePB2AndPB3Pressed
+                  0x004088                  _Buttons_IsPB3LongPress
+                  0x004092                  _Buttons_IsPB2AndPB3LongPress
+                  0x0040c2                  _Buttons_IsPB2AndPB3Click
+                  0x0040d6                  _Buttons_IsPB1Pressed
+                  0x0040e0                  _Buttons_IsPB2Pressed
+                  0x0040ea                  _Buttons_IsPB3Pressed
+                  0x0040f4                  _Buttons_ClearEvents
+                  0x004124                  _Buttons_SendPendingEvents
+ .text            0x004244        0x34e build/default/production/FreeRTOS/event_groups.o
+                  0x004244                  _xEventGroupCreate
+                  0x004262                  _xEventGroupSync
+                  0x00431e                  _xEventGroupWaitBits
+                  0x0043fe                  _xEventGroupClearBits
+                  0x004426                  _xEventGroupGetBitsFromISR
+                  0x00443e                  _xEventGroupSetBits
+                  0x00450c                  _vEventGroupDelete
+                  0x004536                  _vEventGroupSetBitsCallback
+                  0x004548                  _vEventGroupClearBitsCallback
+ .text            0x004592        0x2ce build/default/production/FreeRTOS/croutine.o
+                  0x004592                  _xCoRoutineCreate
+                  0x004628                  _vCoRoutineAddToDelayedList
+                  0x004772                  _vCoRoutineSchedule
+                  0x004814                  _xCoRoutineRemoveFromEventList
+                  0x00484c                  _vCoRoutineResetState
+ .text            0x004860        0x150 build/default/production/uart.o
+                  0x004860                  _InitUART2
+                  0x0048b4                  _Disp2String
+                  0x0048d6                  _XmitUART2
+                  0x00490e                  _RecvUart
+                  0x004966                  _RecvUartChar
+ .text            0x0049b0        0x12e build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/port.o
+                  0x0049b0                  _pxPortInitialiseStack
+                  0x004a4a                  _xPortStartScheduler
+                  0x004a7a                  _vPortEndScheduler
+                  0x004a80                  _vApplicationSetupTickTimerInterrupt
+                  0x004aa8                  _vPortEnterCritical
+                  0x004ac2                  _vPortExitCritical
+ .text            0x004ade        0x128 build/default/production/FreeRTOS/list.o
+                  0x004ade                  _vListInitialise
+                  0x004b10                  _vListInitialiseItem
+                  0x004b1e                  _vListInsertEnd
+                  0x004b5a                  _vListInsert
+                  0x004bbe                  _uxListRemove
+ .text            0x004c06         0xce build/default/production/FreeRTOS/pwm.o
+                  0x004c06                  _PWM_Init
+                  0x004c32                  _PWM_Start
+                  0x004c42                  _PWM_Stop
+                  0x004c4e                  _PWM_SetDutyCycle
+                  0x004c68                  _PWM_GetDutyCycle
+                  0x004c70                  _PWM_SetOutputEnabled
+                  0x004c88                  _PWM_IsOutputEnabled
+                  0x004c90                  _PWM_UpdatePulse
+                  0x004cc6                  _PWM_ResetPulse
+ .text            0x004cd4         0x96 build/default/production/FreeRTOS/portable/MemMang/heap_1.o
+                  0x004cd4                  _pvPortMalloc
+                  0x004d46                  _vPortFree
+                  0x004d4e                  _vPortInitialiseBlocks
+                  0x004d56                  _xPortGetFreeHeapSize
+                  0x004d62                  _vPortHeapResetState
+ .text            0x004d6a         0x72 build/default/production/FreeRTOS/adc.o
+                  0x004d6a                  _ADC_Init
+                  0x004d86                  _ADC_ReadPotentiometer
+                  0x004da0                  _ADC_ToPercent
+                  0x004dce                  _ADC_ReadBrightnessPercent
 
-.dinit            0x004d8a         0x5a
- .dinit           0x004d8a         0x5a data_init
+.dinit            0x004ddc         0x5a
+ .dinit           0x004ddc         0x5a data_init
 
-.text             0x004de4         0x54
- .text            0x004de4         0x54 build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/portasm_PIC24.o
-                  0x004de4                  _vPortYield
+.text             0x004e36         0x54
+ .text            0x004e36         0x54 build/default/production/FreeRTOS/portable/MPLAB/PIC24_dsPIC/portasm_PIC24.o
+                  0x004e36                  _vPortYield

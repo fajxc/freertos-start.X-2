@@ -641,10 +641,39 @@ void vCountdownTask(void *pvParameters)
             }
         }
         
-        /* Countdown complete */
+        /* Countdown complete - enter FINISHED state */
+        LED1_Off();
+        LED0_Off();
+        
+        /* Set state to COMPLETED */
+        if (xSemaphoreTake(xStateMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+            g_SystemState = STATE_COMPLETED;
+            xSemaphoreGive(xStateMutex);
+        }
+        
+        SafeDisp2String("\r\n\nCOUNTDOWN COMPLETE!\r\n\n");
+        
+        /* LED2 solid on */
+        PWM_SetOutputEnabled(true);
+        PWM_SetDutyCycle(50);  /* Use current brightness (will be from ADC later) */
+        
+        /* LED0 and LED1 alternate rapidly for 5 seconds */
+        const TickType_t blinkDelay = pdMS_TO_TICKS(100);  /* 100ms per half cycle */
+        const uint8_t blinkCycles = 25;  /* 25 cycles * 200ms = 5 seconds */
+        
+        for (uint8_t i = 0; i < blinkCycles; i++) {
+            LED0_On();
+            LED1_Off();
+            vTaskDelay(blinkDelay);
+            LED0_Off();
+            LED1_On();
+            vTaskDelay(blinkDelay);
+        }
+        
+        /* Turn off all LEDs */
+        LED0_Off();
         LED1_Off();
         PWM_Stop();
-        SafeDisp2String("\r\n\nCOUNTDOWN COMPLETE!\r\n\n");
         
         /* Return to WAITING */
         if (xSemaphoreTake(xStateMutex, pdMS_TO_TICKS(100)) == pdTRUE) {
